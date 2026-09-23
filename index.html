@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>《自新 Reform》導演空間控制台 v25 劇本與筆記編輯版</title>
+<title>《自新 Reform》導演空間控制台 v26.1 劇本與筆記編輯版</title>
 <style>
 :root{
   --bg:#f4f3ef;--panel:#ffffff;--ink:#1d1f20;--muted:#72746f;--line:#dddcd6;
@@ -1915,13 +1915,191 @@ body{min-width:0}
   .editor-section-actions{justify-content:flex-start}
 }
 
+
+/* =========================================================
+   v26 GitHub direct save
+   ========================================================= */
+.github-save-btn{
+  border-color:#5e715f !important;
+  background:#edf2ed !important;
+  color:#223127 !important;
+  font-weight:800 !important;
+}
+.github-save-btn.syncing{
+  opacity:.65;
+  cursor:progress;
+}
+.github-save-btn.saved{
+  background:#dfece2 !important;
+}
+.github-save-btn.error{
+  background:#f5e2df !important;
+  border-color:#b4776a !important;
+  color:#74382e !important;
+}
+
+.github-overlay[hidden]{display:none}
+.github-overlay{
+  position:fixed;
+  inset:0;
+  z-index:12000;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:18px;
+  background:rgba(12,16,13,.72);
+  backdrop-filter:blur(4px);
+}
+.github-dialog{
+  width:min(660px,100%);
+  max-height:min(720px,92dvh);
+  overflow:auto;
+  padding:18px;
+  border:1px solid rgba(255,255,255,.14);
+  border-radius:14px;
+  background:#f6f6f1;
+  color:#1f2822;
+  box-shadow:0 28px 90px rgba(0,0,0,.45);
+}
+.github-dialog-head{
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:12px;
+  padding-bottom:12px;
+  border-bottom:1px solid #d8d9d1;
+}
+.github-dialog-head h2{
+  margin:2px 0 0;
+  font-size:20px;
+}
+.github-dialog-head .eyebrow{
+  color:#758076;
+  font-size:8px;
+  font-weight:900;
+  letter-spacing:.16em;
+}
+.github-close{
+  width:34px;
+  height:34px;
+  border:1px solid #d2d4cc;
+  border-radius:8px;
+  background:#fff;
+  font-size:20px;
+  cursor:pointer;
+}
+.github-security-note{
+  margin:12px 0;
+  padding:9px 10px;
+  border:1px solid #d9ddd6;
+  border-radius:8px;
+  background:#eef2ed;
+  font-size:10px;
+  line-height:1.5;
+}
+.github-form-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+}
+.github-form-grid label,
+.github-token-field,
+.github-commit-field{
+  display:flex;
+  flex-direction:column;
+  gap:5px;
+  color:#667067;
+  font-size:9px;
+  font-weight:800;
+}
+.github-form-grid input,
+.github-token-field input,
+.github-commit-field input{
+  width:100%;
+  min-height:36px;
+  box-sizing:border-box;
+  padding:7px 9px;
+  border:1px solid #cfd2ca;
+  border-radius:7px;
+  background:#fff;
+  color:#1e2821;
+  font:inherit;
+  font-size:11px;
+  outline:none;
+}
+.github-form-grid input:focus,
+.github-token-field input:focus,
+.github-commit-field input:focus{
+  border-color:#617967;
+  box-shadow:0 0 0 2px rgba(61,91,70,.10);
+}
+.github-token-field,
+.github-commit-field{
+  margin-top:10px;
+}
+.github-remember-row{
+  display:flex;
+  align-items:center;
+  gap:7px;
+  margin-top:8px;
+  font-size:10px;
+  font-weight:700;
+}
+.github-token-warning{
+  margin:4px 0 0 24px;
+  color:#7b7f78;
+  font-size:8.5px;
+  line-height:1.45;
+}
+.github-sync-status{
+  margin-top:12px;
+  min-height:38px;
+  padding:9px 10px;
+  border:1px solid #d8dad3;
+  border-radius:8px;
+  background:#fff;
+  font-size:10px;
+  line-height:1.5;
+}
+.github-sync-status.ok{
+  border-color:#9fbea7;
+  background:#edf5ef;
+  color:#31533a;
+}
+.github-sync-status.error{
+  border-color:#d3a298;
+  background:#f9ece9;
+  color:#7c3f34;
+}
+.github-sync-status.busy{
+  color:#75631d;
+  background:#f7f2dd;
+  border-color:#d9cc8e;
+}
+.github-dialog-actions{
+  display:flex;
+  justify-content:flex-end;
+  gap:7px;
+  margin-top:13px;
+}
+.github-primary{
+  background:#263a2c !important;
+  border-color:#263a2c !important;
+  color:#fff !important;
+}
+@media(max-width:650px){
+  .github-form-grid{grid-template-columns:1fr}
+  .github-dialog-actions{flex-wrap:wrap}
+  .github-dialog-actions .btn{flex:1 1 130px}
+}
+
 </style>
 </head>
 <body>
 <div class="app director-app v9" id="app">
   <header class="director-header">
     <div class="director-title">
-      <h1>《自新 Reform》<span>導演空間控制台 v25</span></h1>
+      <h1>《自新 Reform》<span>導演空間控制台 v26</span></h1>
       <div id="chapterStatus" class="director-status">查看中：尚未選擇章節／模擬進度：尚未開始</div>
       <div class="project-data-status" id="projectDataStatus">資料：project.json</div>
     </div>
@@ -1934,12 +2112,14 @@ body{min-width:0}
 
     <div class="director-tools">
       <button class="btn" id="toggleDrawer" type="button">劇本：一般</button>
+      <button class="btn github-save-btn" id="saveGithub" type="button">儲存到 GitHub</button>
       <details class="utility-menu" id="utilityMenu">
         <summary aria-label="更多控制">•••</summary>
         <div class="utility-popover">
           <button class="utility-item" id="jump30" type="button">模擬半小時後 → 5-01</button>
           <button class="utility-item" id="toggleAuto" type="button">明確自動事件：開</button>
           <button class="utility-item" id="exportProject" type="button">匯出 project.json</button>
+          <button class="utility-item" id="openGithubSettings" type="button">GitHub 儲存設定</button>
           <button class="utility-item danger" id="reset" type="button">全部重新開始</button>
         </div>
       </details>
@@ -2197,6 +2377,68 @@ body{min-width:0}
   </section>
 </div>
 </body>
+
+<div class="github-overlay" id="githubOverlay" hidden>
+  <section class="github-dialog" role="dialog" aria-modal="true" aria-labelledby="githubDialogTitle">
+    <div class="github-dialog-head">
+      <div>
+        <div class="eyebrow">PROJECT.JSON SYNC</div>
+        <h2 id="githubDialogTitle">GitHub 儲存設定</h2>
+      </div>
+      <button type="button" class="github-close" id="closeGithubSettings" aria-label="關閉">×</button>
+    </div>
+
+    <div class="github-security-note">
+      Token 不會寫進 index.html 或 project.json。Repository 設定存在瀏覽器；Token 預設只保留到目前瀏覽器工作階段結束。
+    </div>
+
+    <div class="github-form-grid">
+      <label>
+        <span>Repository owner</span>
+        <input id="githubOwner" autocomplete="off" placeholder="例如 jimlee">
+      </label>
+      <label>
+        <span>Repository</span>
+        <input id="githubRepo" autocomplete="off" placeholder="例如 reform">
+      </label>
+      <label>
+        <span>Branch</span>
+        <input id="githubBranch" autocomplete="off" value="main" placeholder="main">
+      </label>
+      <label>
+        <span>project.json 路徑</span>
+        <input id="githubPath" autocomplete="off" value="project.json" placeholder="project.json">
+      </label>
+    </div>
+
+    <label class="github-token-field">
+      <span>Fine-grained personal access token</span>
+      <input id="githubToken" type="password" autocomplete="off" placeholder="github_pat_...">
+    </label>
+
+    <label class="github-remember-row">
+      <input id="githubRememberToken" type="checkbox">
+      <span>記住 Token 在這台瀏覽器</span>
+    </label>
+    <div class="github-token-warning">
+      只有你自己的私人裝置才建議勾選。未勾選時 Token 只放在 sessionStorage；關閉這個瀏覽器工作階段後需要重新貼上。
+    </div>
+
+    <label class="github-commit-field">
+      <span>Commit 訊息</span>
+      <input id="githubCommitMessage" autocomplete="off" value="Update Reform project">
+    </label>
+
+    <div class="github-sync-status" id="githubSyncStatus">尚未測試 GitHub 連線。</div>
+
+    <div class="github-dialog-actions">
+      <button type="button" class="btn" id="githubForgetToken">忘記 Token</button>
+      <button type="button" class="btn" id="githubTest">測試連線</button>
+      <button type="button" class="btn github-primary" id="githubSaveNow">儲存到 GitHub</button>
+    </div>
+  </section>
+</div>
+
 <script>
 const PROJECT_FILE='project.json';
 
@@ -2252,6 +2494,7 @@ async function loadProjectData(){
 
 (async function(){
 const projectData=await loadProjectData();
+let publishedProjectSnapshot=stableProjectSnapshot(projectData);
 
 
 const raw = projectData.raw || [];
@@ -2778,11 +3021,8 @@ const sceneOverrideStorageKey = 'reform360SceneOverrides.v1';
 
 // project.json = 正式資料；localStorage = 尚未匯出的本機草稿。
 // 草稿值為 null 代表「正式刪除 project.json 中已存的自訂 scene，回到預設」。
-const publishedSceneOverrides = Object.fromEntries(
-  Object.entries(projectData.actionSettings || {})
-    .filter(([,value]) => value && typeof value.sceneOverride === 'string' && value.sceneOverride)
-    .map(([name,value]) => [name,value.sceneOverride])
-);
+// Published scene overrides are read dynamically from projectData so a successful GitHub save
+// can promote local drafts to the new in-memory official state without reloading the page.
 let sceneOverrides = loadSceneOverrides();
 
 function loadSceneOverrides(){
@@ -2806,14 +3046,14 @@ function hasDraftSceneOverride(actionName){
   return Object.prototype.hasOwnProperty.call(sceneOverrides, actionName);
 }
 function publishedSceneForAction(actionName){
-  const scene=publishedSceneOverrides[actionName];
+  const scene=projectData.actionSettings?.[actionName]?.sceneOverride;
   return scene && /^pano[\w.-]+$/i.test(scene) ? scene : null;
 }
 function buildExportProject(){
   const exported=JSON.parse(JSON.stringify(projectData));
   exported.schemaVersion=2;
   exported.project=exported.project || {};
-  exported.project.dataVersion='v25';
+  exported.project.dataVersion='v26';
   exported.actionSettings=exported.actionSettings || {};
   exported.spaceNotes=exported.spaceNotes || {};
   exported.imageOverrides=exported.imageOverrides || {};
@@ -2847,6 +3087,301 @@ function downloadProjectJson(){
   a.click();
   a.remove();
   setTimeout(()=>URL.revokeObjectURL(url),1000);
+}
+
+
+const githubConfigStorageKey='reformGithubConfig.v1';
+const githubTokenStorageKey='reformGithubToken.v1';
+const githubApiBase='https://api.github.com';
+
+function stableSortValue(value){
+  if(Array.isArray(value)) return value.map(stableSortValue);
+  if(value && typeof value==='object'){
+    const out={};
+    for(const key of Object.keys(value).sort()) out[key]=stableSortValue(value[key]);
+    return out;
+  }
+  return value;
+}
+function stableProjectSnapshot(value){
+  return JSON.stringify(stableSortValue(value));
+}
+function cloneJson(value){
+  return JSON.parse(JSON.stringify(value));
+}
+function inferGithubPagesConfig(){
+  const host=location.hostname || '';
+  const match=host.match(/^([^.]+)\.github\.io$/i);
+  if(!match) return {};
+  const owner=match[1];
+  const parts=location.pathname.split('/').filter(Boolean);
+  const repo=parts.length ? parts[0] : owner+'.github.io';
+  return {owner,repo};
+}
+function loadGithubConfig(){
+  let saved={};
+  try{
+    saved=JSON.parse(localStorage.getItem(githubConfigStorageKey) || '{}') || {};
+  }catch(e){}
+  const inferred=inferGithubPagesConfig();
+  return {
+    owner:saved.owner || inferred.owner || '',
+    repo:saved.repo || inferred.repo || '',
+    branch:saved.branch || 'main',
+    path:saved.path || 'project.json',
+    commitMessage:saved.commitMessage || 'Update Reform project'
+  };
+}
+function getStoredGithubToken(){
+  try{
+    return sessionStorage.getItem(githubTokenStorageKey) ||
+      localStorage.getItem(githubTokenStorageKey) || '';
+  }catch(e){
+    return '';
+  }
+}
+function isGithubTokenRemembered(){
+  try{return !!localStorage.getItem(githubTokenStorageKey);}catch(e){return false;}
+}
+function saveGithubAuthFromForm(){
+  const cfg={
+    owner:(document.getElementById('githubOwner')?.value || '').trim(),
+    repo:(document.getElementById('githubRepo')?.value || '').trim(),
+    branch:(document.getElementById('githubBranch')?.value || 'main').trim() || 'main',
+    path:(document.getElementById('githubPath')?.value || 'project.json').trim() || 'project.json',
+    commitMessage:(document.getElementById('githubCommitMessage')?.value || 'Update Reform project').trim() || 'Update Reform project'
+  };
+  const token=(document.getElementById('githubToken')?.value || '').trim();
+  const remember=!!document.getElementById('githubRememberToken')?.checked;
+
+  localStorage.setItem(githubConfigStorageKey,JSON.stringify(cfg));
+  if(token){
+    if(remember){
+      localStorage.setItem(githubTokenStorageKey,token);
+      sessionStorage.removeItem(githubTokenStorageKey);
+    }else{
+      sessionStorage.setItem(githubTokenStorageKey,token);
+      localStorage.removeItem(githubTokenStorageKey);
+    }
+  }
+  return {...cfg,token};
+}
+function populateGithubSettings(){
+  const cfg=loadGithubConfig();
+  document.getElementById('githubOwner').value=cfg.owner;
+  document.getElementById('githubRepo').value=cfg.repo;
+  document.getElementById('githubBranch').value=cfg.branch;
+  document.getElementById('githubPath').value=cfg.path;
+  document.getElementById('githubCommitMessage').value=cfg.commitMessage;
+  document.getElementById('githubToken').value=getStoredGithubToken();
+  document.getElementById('githubRememberToken').checked=isGithubTokenRemembered();
+}
+function openGithubSettings(){
+  populateGithubSettings();
+  document.getElementById('githubOverlay').hidden=false;
+  document.getElementById('utilityMenu')?.removeAttribute('open');
+}
+function closeGithubSettings(){
+  document.getElementById('githubOverlay').hidden=true;
+}
+function forgetGithubToken(){
+  try{
+    localStorage.removeItem(githubTokenStorageKey);
+    sessionStorage.removeItem(githubTokenStorageKey);
+  }catch(e){}
+  const input=document.getElementById('githubToken');
+  if(input) input.value='';
+  const remember=document.getElementById('githubRememberToken');
+  if(remember) remember.checked=false;
+  setGithubStatus('Token 已從這個瀏覽器清除。','ok');
+}
+function setGithubStatus(message,type=''){
+  const el=document.getElementById('githubSyncStatus');
+  if(!el) return;
+  el.textContent=message;
+  el.className='github-sync-status'+(type?' '+type:'');
+}
+function setGithubHeaderState(text,state=''){
+  const btn=document.getElementById('saveGithub');
+  if(!btn) return;
+  btn.textContent=text;
+  btn.classList.remove('syncing','saved','error');
+  if(state) btn.classList.add(state);
+}
+function validateGithubConfig(cfg){
+  if(!cfg.owner) throw new Error('請填 Repository owner。');
+  if(!cfg.repo) throw new Error('請填 Repository。');
+  if(!cfg.branch) throw new Error('請填 Branch。');
+  if(!cfg.path) throw new Error('請填 project.json 路徑。');
+  if(!cfg.token) throw new Error('請貼上 Fine-grained personal access token。');
+}
+function githubHeaders(token){
+  return {
+    'Accept':'application/vnd.github+json',
+    'Authorization':'Bearer '+token,
+    'X-GitHub-Api-Version':'2022-11-28'
+  };
+}
+function githubContentsUrl(cfg){
+  const path=cfg.path.split('/').map(encodeURIComponent).join('/');
+  return githubApiBase+'/repos/'+encodeURIComponent(cfg.owner)+'/'+encodeURIComponent(cfg.repo)+'/contents/'+path;
+}
+function base64ToUtf8(base64){
+  const clean=String(base64 || '').replace(/\s/g,'');
+  const binary=atob(clean);
+  const bytes=Uint8Array.from(binary,c=>c.charCodeAt(0));
+  return new TextDecoder().decode(bytes);
+}
+function utf8ToBase64(text){
+  const bytes=new TextEncoder().encode(text);
+  let binary='';
+  const chunk=0x8000;
+  for(let i=0;i<bytes.length;i+=chunk){
+    binary+=String.fromCharCode(...bytes.subarray(i,i+chunk));
+  }
+  return btoa(binary);
+}
+async function readGithubProject(cfg){
+  const url=githubContentsUrl(cfg)+'?ref='+encodeURIComponent(cfg.branch);
+  const response=await fetch(url,{headers:githubHeaders(cfg.token),cache:'no-store'});
+  let payload={};
+  try{payload=await response.json();}catch(e){}
+  if(!response.ok){
+    const detail=payload?.message ? '：'+payload.message : '';
+    if(response.status===401) throw new Error('GitHub 驗證失敗，請檢查 Token。'+detail);
+    if(response.status===403) throw new Error('Token 沒有足夠權限，請確認此 repo 的 Contents 是 Read and write。'+detail);
+    if(response.status===404) throw new Error('找不到 repository、branch 或 project.json。也可能是 Token 沒有這個 repo 的存取權。'+detail);
+    throw new Error('GitHub 讀取失敗（HTTP '+response.status+'）'+detail);
+  }
+  if(!payload.sha || !payload.content) throw new Error('GitHub 回傳的 project.json 資料不完整。');
+  let parsed;
+  try{
+    parsed=validateProjectData(JSON.parse(base64ToUtf8(payload.content)));
+  }catch(e){
+    throw new Error('GitHub 上的 project.json 無法解析：'+(e.message||e));
+  }
+  return {sha:payload.sha,project:parsed};
+}
+async function testGithubConnection(){
+  const cfg=saveGithubAuthFromForm();
+  try{
+    validateGithubConfig(cfg);
+    setGithubStatus('正在讀取 GitHub 上的 project.json…','busy');
+    const remote=await readGithubProject(cfg);
+    const same=stableProjectSnapshot(remote.project)===publishedProjectSnapshot;
+    setGithubStatus(
+      '連線成功。找到 '+cfg.owner+'/'+cfg.repo+' 的 '+cfg.path+
+      '（branch: '+cfg.branch+'）。'+
+      (same?'目前 GitHub 版本與此頁載入的正式版本一致。':'注意：GitHub 上的正式版本已和此頁載入時不同；儲存時會停止覆寫。'),
+      same?'ok':'error'
+    );
+    return true;
+  }catch(err){
+    setGithubStatus(err.message || String(err),'error');
+    return false;
+  }
+}
+function promoteSavedProjectToPublished(saved){
+  projectData.actionSettings=cloneJson(saved.actionSettings || {});
+  projectData.spaceNotes=cloneJson(saved.spaceNotes || {});
+  projectData.imageOverrides=cloneJson(saved.imageOverrides || {});
+  projectData.project=cloneJson(saved.project || {});
+  projectData.schemaVersion=saved.schemaVersion;
+
+  sceneOverrides={};
+  editingDrafts={actionSettings:{},spaceNotes:{}};
+  try{
+    localStorage.removeItem(sceneOverrideStorageKey);
+    localStorage.removeItem(editingDraftStorageKey);
+  }catch(e){}
+  publishedProjectSnapshot=stableProjectSnapshot(saved);
+  updateProjectDraftStatus();
+  render();
+}
+async function saveProjectToGithub({openSettingsOnMissing=true}={}){
+  let cfg=loadGithubConfig();
+  cfg.token=getStoredGithubToken();
+
+  if(!cfg.owner || !cfg.repo || !cfg.token){
+    if(openSettingsOnMissing){
+      openGithubSettings();
+      setGithubStatus('第一次使用請先填寫 repository 與 Token，再按「儲存到 GitHub」。');
+    }
+    return false;
+  }
+
+  // Keep current form values if panel is open.
+  if(!document.getElementById('githubOverlay').hidden){
+    cfg=saveGithubAuthFromForm();
+  }
+
+  try{
+    validateGithubConfig(cfg);
+    setGithubHeaderState('正在儲存…','syncing');
+    setGithubStatus('步驟 1/2：確認 GitHub 上的最新版 project.json…','busy');
+
+    const remote=await readGithubProject(cfg);
+    const remoteSnapshot=stableProjectSnapshot(remote.project);
+    if(remoteSnapshot!==publishedProjectSnapshot){
+      throw new Error('GitHub 上的 project.json 已經在你開啟這個頁面之後被修改。為避免覆蓋新版，這次沒有儲存。請重新載入頁面後，再把修改套用到最新版。');
+    }
+
+    const exported=buildExportProject();
+    exported.schemaVersion=2;
+    exported.project=exported.project || {};
+    exported.project.dataVersion='v26';
+    const content=JSON.stringify(exported,null,2)+'\n';
+
+    setGithubStatus('步驟 2/2：正在建立 GitHub commit…','busy');
+
+    const response=await fetch(githubContentsUrl(cfg),{
+      method:'PUT',
+      headers:{
+        ...githubHeaders(cfg.token),
+        'Content-Type':'application/json'
+      },
+      body:JSON.stringify({
+        message:cfg.commitMessage || 'Update Reform project',
+        content:utf8ToBase64(content),
+        sha:remote.sha,
+        branch:cfg.branch
+      })
+    });
+    let payload={};
+    try{payload=await response.json();}catch(e){}
+
+    if(!response.ok){
+      const detail=payload?.message ? '：'+payload.message : '';
+      if(response.status===409){
+        throw new Error('GitHub 回報版本衝突（409）。project.json 在讀取後又被更新，這次沒有覆蓋。請重新載入後再試。');
+      }
+      if(response.status===401) throw new Error('GitHub 驗證失敗，請重新設定 Token。'+detail);
+      if(response.status===403) throw new Error('Token 沒有寫入權限。請確認 Repository permissions → Contents → Read and write。'+detail);
+      throw new Error('GitHub 儲存失敗（HTTP '+response.status+'）'+detail);
+    }
+
+    promoteSavedProjectToPublished(exported);
+
+    const shortSha=payload?.commit?.sha ? payload.commit.sha.slice(0,7) : '';
+    const when=new Date().toLocaleString();
+    setGithubStatus(
+      '儲存成功。已建立 commit'+(shortSha?' '+shortSha:'')+'。本機草稿已提升為正式 project.json。GitHub Pages 可能需要一點時間才會顯示新版。'+
+      '｜'+when,
+      'ok'
+    );
+    setGithubHeaderState('已儲存到 GitHub','saved');
+    setTimeout(()=>setGithubHeaderState('儲存到 GitHub'),2600);
+    return true;
+  }catch(err){
+    const message=err.message || String(err);
+    setGithubStatus(message,'error');
+    setGithubHeaderState('GitHub 儲存失敗','error');
+    setTimeout(()=>setGithubHeaderState('儲存到 GitHub'),3200);
+    if(openSettingsOnMissing || !document.getElementById('githubOverlay').hidden){
+      document.getElementById('githubOverlay').hidden=false;
+    }
+    return false;
+  }
 }
 
 
@@ -3556,7 +4091,7 @@ function renderDetails(){
 
   const scriptBody=isEditingScript
     ? '<textarea class="script-editor" id="scriptEditor" spellcheck="false" placeholder="在這裡修改此 Action 的劇本……">'+esc(script)+'</textarea>'+
-      '<div class="editor-autosave" id="scriptAutosaveState">修改會自動暫存在這個瀏覽器；匯出 project.json 後才成為可分享的正式資料。</div>'
+      '<div class="editor-autosave" id="scriptAutosaveState">修改會自動暫存在這個瀏覽器；可按「儲存到 GitHub」直接寫回 project.json，也可匯出備份。</div>'
     : (script
         ? '<div class="script-box script prompt-script-text">'+richText(script)+'</div>'
         : '<div class="note-box">此 Action 目前沒有劇本文字。按「編輯劇本」可以新增。</div>');
@@ -4382,6 +4917,14 @@ function setNarrowPanel(panel){
   document.getElementById('panelTabProps')?.classList.toggle('active',panel==='props');
 }
 document.getElementById('exportProject')?.addEventListener('click',()=>{downloadProjectJson();document.getElementById('utilityMenu')?.removeAttribute('open');});
+document.getElementById('saveGithub')?.addEventListener('click',()=>saveProjectToGithub());
+document.getElementById('openGithubSettings')?.addEventListener('click',openGithubSettings);
+document.getElementById('closeGithubSettings')?.addEventListener('click',closeGithubSettings);
+document.getElementById('githubOverlay')?.addEventListener('click',e=>{if(e.target===e.currentTarget)closeGithubSettings();});
+document.getElementById('githubForgetToken')?.addEventListener('click',forgetGithubToken);
+document.getElementById('githubTest')?.addEventListener('click',testGithubConnection);
+document.getElementById('githubSaveNow')?.addEventListener('click',()=>saveProjectToGithub({openSettingsOnMissing:false}));
+
 document.getElementById('openSceneSettings')?.addEventListener('click',openSceneSettingsPanel);
 document.getElementById('closeSceneSettings')?.addEventListener('click',closeSceneSettingsPanel);
 document.getElementById('saveSceneOverride')?.addEventListener('click',()=>applySceneOverrideInput({save:true}));
@@ -4414,6 +4957,7 @@ document.getElementById('scriptCollapse').addEventListener('click',()=>setScript
 document.getElementById('scriptNormal').addEventListener('click',()=>setScriptMode('normal'));
 document.getElementById('scriptFocus').addEventListener('click',()=>setScriptMode('focus'));
 bindEditingUi();
+populateGithubSettings();
 setScriptMode('normal');
 updateProjectDraftStatus();
 render();
