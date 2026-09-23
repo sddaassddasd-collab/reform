@@ -593,7 +593,11 @@
       "note": "結尾沒有指定新的實體空間；360 保留上一個已定位場景。"
     }
   },
-  "actionSettings": {},
+  "actionSettings": {
+    "1-01 子朗開場來電": {
+      "directorNote": ""
+    }
+  },
   "spaceNotes": {},
   "imageOverrides": {}
 }
