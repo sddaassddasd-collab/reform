@@ -629,6 +629,15 @@
     },
     "5-02 餐廳聲景": {
       "sceneOverride": "pano12190"
+    },
+    "2-01 物件2-1：衣服": {
+      "roomAssignment": {
+        "floor": "1f",
+        "roomIds": [
+          "1f_laundry_wash"
+        ],
+        "precision": "room"
+      }
     }
   },
   "spaceNotes": {},
