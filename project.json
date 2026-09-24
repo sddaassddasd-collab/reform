@@ -593,7 +593,17 @@
       "note": "結尾沒有指定新的實體空間；360 保留上一個已定位場景。"
     }
   },
-  "actionSettings": {},
+  "actionSettings": {
+    "3-01 物件3-1：錄音機（父母對話）": {
+      "sceneOverride": "pano12207"
+    },
+    "3-02 錄音機耳機聲景：軍人對話": {
+      "sceneOverride": "pano12207"
+    },
+    "3-03 物件3-2：囚犯一方聽筒": {
+      "sceneOverride": "pano12225"
+    }
+  },
   "spaceNotes": {},
   "imageOverrides": {},
   "propOverrides": {},
