@@ -614,6 +614,18 @@
     },
     "4-01 物品4-1：醫療檔案": {
       "sceneOverride": "pano12212"
+    },
+    "4-02 物品4-2：政治犯名單": {
+      "sceneOverride": "pano12212"
+    },
+    "4-03 物品4-3：借書單": {
+      "sceneOverride": "pano12180"
+    },
+    "4-04 物品4-4：《西洋哲學史》上": {
+      "sceneOverride": "pano12180"
+    },
+    "4-05 物品4-5：《西洋哲學史》下": {
+      "sceneOverride": "pano12180"
     }
   },
   "spaceNotes": {},
