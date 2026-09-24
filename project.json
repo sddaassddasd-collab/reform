@@ -608,6 +608,9 @@
     },
     "3-05 福利社聲景": {
       "sceneOverride": "pano13631"
+    },
+    "3-06 子朗訊息：叔叔": {
+      "sceneOverride": "pano13631"
     }
   },
   "spaceNotes": {},
