@@ -601,7 +601,13 @@
       "sceneOverride": "pano12207"
     },
     "3-03 物件3-2：囚犯一方聽筒": {
-      "sceneOverride": "pano12225"
+      "sceneOverride": "pano12224"
+    },
+    "3-04 物件3-3：探監一方聽筒": {
+      "sceneOverride": "pano13634"
+    },
+    "3-05 福利社聲景": {
+      "sceneOverride": "pano13631"
     }
   },
   "spaceNotes": {},
