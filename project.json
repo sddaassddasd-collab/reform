@@ -593,12 +593,48 @@
       "note": "結尾沒有指定新的實體空間；360 保留上一個已定位場景。"
     }
   },
-  "actionSettings": {},
+  "actionSettings": {
+    "7-00 子朗訊息：四個牢房後": {
+      "roomAssignment": {
+        "floor": "2f",
+        "roomIds": [
+          "2f_cells_south",
+          "2f_cells_west",
+          "2f_cells_nw",
+          "2f_cells_ne",
+          "2f_cells_east"
+        ],
+        "precision": "multi"
+      }
+    },
+    "7-01 物品7-1：判決書": {
+      "roomAssignment": {
+        "floor": "2f",
+        "roomIds": [
+          "2f_admin_north"
+        ],
+        "precision": "room"
+      }
+    },
+    "7-03 物品7-3：死亡報告": {
+      "roomAssignment": {
+        "floor": "2f",
+        "roomIds": [
+          "2f_admin_north"
+        ],
+        "precision": "room"
+      }
+    }
+  },
   "spaceNotes": {},
   "imageOverrides": {},
   "propOverrides": {},
   "customProps": {},
-  "hiddenProps": {},
+  "hiddenProps": {
+    "三、福利社、會面室::囚犯一方聽筒": true,
+    "三、福利社、會面室::探監一方聽筒": true,
+    "六、牢房::醫院病床＋椅子": true
+  },
   "propIdentityLinks": {
     "一、服務中心::父親寫給母親的信＋夾帶紙條": "physical::father-letter",
     "八、結尾::父親的信（再次被提起）": "physical::father-letter"
