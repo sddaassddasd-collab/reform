@@ -633,7 +633,8 @@
   "hiddenProps": {
     "三、福利社、會面室::囚犯一方聽筒": true,
     "三、福利社、會面室::探監一方聽筒": true,
-    "六、牢房::醫院病床＋椅子": true
+    "六、牢房::醫院病床＋椅子": true,
+    "五、餐廳::餐桌、碗筷": true
   },
   "propIdentityLinks": {
     "一、服務中心::父親寫給母親的信＋夾帶紙條": "physical::father-letter",
